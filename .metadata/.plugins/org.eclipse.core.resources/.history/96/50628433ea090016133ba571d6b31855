@@ -1,0 +1,22 @@
+package genericity;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class ArrayListTest {
+	public static void main(String[] args) {
+		ArrayList<String> al = new ArrayList<String>();
+		al.add("hello");
+		al.add("world");
+		al.add("java arraylist");
+//		al.add(10);
+		
+		Iterator<String> it = al.iterator();
+		
+		while(it.hasNext()){
+			System.out.println(it.next());
+		}
+		System.out.println(al.isEmpty());
+		System.out.println(al.size());
+	}
+}

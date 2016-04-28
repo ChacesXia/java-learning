@@ -1,0 +1,24 @@
+package ioDemo;
+
+import java.io.*;
+import java.util.*;
+public class FileDemo{
+	public static void main(String[] args) throws IOException{
+		String pathname = "test.txt";
+		// File file = new File(pathname);
+		// String[] list = file.list();
+		// Arrays.sort(list);
+		// for(String item: list){
+		// 	System.out.println(item);
+		// }
+		// System.out.println(file.exists());
+		// // System.out.println(file.delete());
+		// System.out.println(file.getTotalSpace());
+		// System.out.println(file.getUsableSpace());
+		// System.out.println(file.hashCode());
+		// System.out.println(file.length());
+
+		FileInputStream file = new FileInputStream(pathname);
+		System.out.println(s);
+	}
+}

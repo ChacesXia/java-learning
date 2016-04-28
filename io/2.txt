@@ -1,0 +1,36 @@
+实例：读写任意大文件应用
+因为byte数组最大存储值不超过64M，所以当一个文件大于60M 的时候，需要分开几个流操作。我们把上面的程序作一个修改，就可以写入任意大小的文件。这个程序应用了FileInputStream类的方法如下：
+read(byte[] b,int off,int len)
+把特定位置的流内容读入数组，已经读入byte[]数组的内容，会在流文件中删除。
+程序运行的结果会产生一个新文件。
+样例：
+import java.io.*;
+public class FileStreamDemo2 {
+public static void main(String[] args) throws IOException {
+//创建两个文件
+File inFile = new File("tcty36.rm");
+File outFile = new File("newtcty36.rm");
+//最大的流为60Mb,当文件的容量大于60Mb的时候便分开流
+final int MAX_BYTE = 60000000;
+long streamTotal = 0;  //接受流的容量
+int streamNum = 0;  //流需要分开的数量
+int leave = 0;  //文件剩下的字符数
+byte[] inOutb;  //byte数组接受文件的数据
+//创建流文件读入与写出类
+FileInputStream inStream = new FileInputStream(inFile);
+FileOutputStream outStream = new FileOutputStream(outFile);
+//通过available方法取得流的最大字符数
+streamTotal = inStream.available();
+//取得流文件需要分开的数量
+streamNum = (int)Math.floor(streamTotal/MAX_BYTE);
+//分开文件之后,剩余的数量
+leave = (int)streamTotal % MAX_BYTE;
+//文件的容量大于60Mb时进入循环
+if (streamNum > 0) {
+for(int i = 0; i < streamNum; ++i){
+inOutb = new byte[MAX_BYTE];
+//读入流,保存在byte数组
+inStream.read(inOutb, 0, MAX_BYTE);
+outStream.write(inOutb);  //写出流
+outStream.flush();  //更新写出的结果
+}

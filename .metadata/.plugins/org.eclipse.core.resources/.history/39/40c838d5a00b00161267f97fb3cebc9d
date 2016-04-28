@@ -1,0 +1,21 @@
+package demo.collection;
+
+//import java.util.ArrayList;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class ListDemo {
+	public static void main(String[] agrs){
+		List<Object> list = new ArrayList<Object>();
+		for(int i=0;i<20;i++){
+			list.add(i);
+		}
+		Collections.sort(list);
+		list.retainAll();
+		System.out.println(list.containsAll(list.subList(4, 9)));
+		for(Object i: list){
+			System.out.print(i+" ");
+		}
+	}
+}
